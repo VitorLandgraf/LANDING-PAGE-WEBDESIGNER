@@ -59,7 +59,7 @@ const About = () => {
               <div className="absolute inset-0 bg-white/5" />
               <div className="relative w-full h-full p-4">
                 <img
-                  src="/profile.jpg"
+                  src="./images/profile.jpg"
                   alt="Designer"
                   className="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
                   style={{ maxHeight: '400px' }}
