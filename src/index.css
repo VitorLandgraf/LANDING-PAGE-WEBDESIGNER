@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    --primary-rgb: 99, 102, 241;
+    --accent-rgb: 236, 72, 153;
+  }
+  
+  html {
+    @apply overflow-x-hidden;
+  }
+  
+  body {
+    @apply bg-background text-text min-h-screen overflow-x-hidden max-w-[100vw];
+    background: radial-gradient(circle at top left, rgba(var(--primary-rgb), 0.15), transparent 25%),
+                radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.15), transparent 25%),
+                radial-gradient(at bottom left, rgba(var(--primary-rgb), 0.1), transparent 25%),
+                linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+  }
+}
+
+@layer utilities {
+  .glow {
+    position: relative;
+  }
+
+  .glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(to right, theme('colors.primary'), theme('colors.accent'));
+    filter: blur(15px);
+    z-index: -1;
+    opacity: 0.5;
+  }
+} 
