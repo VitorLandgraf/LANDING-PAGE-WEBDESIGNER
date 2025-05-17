@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
-import defaultAvatar from '../../assets/default-avatar.svg';
+import { Star, Quote, User } from 'lucide-react';
 
 const Testimonials = () => {
   const testimonials = [
@@ -9,29 +8,26 @@ const Testimonials = () => {
       name: 'Ana Silva',
       role: 'CEO, TechStart',
       content: 'Um profissional excepcional! Transformou completamente a identidade visual da nossa empresa com um design moderno e impactante.',
-      rating: 5,
-      image: defaultAvatar
+      rating: 5
     },
     {
       id: 2,
       name: 'Pedro Santos',
       role: 'Diretor de Marketing, InnovaCorp',
       content: 'Incrível capacidade de transformar conceitos em designs memoráveis. Superou todas as nossas expectativas!',
-      rating: 5,
-      image: defaultAvatar
+      rating: 5
     },
     {
       id: 3,
       name: 'Maria Costa',
       role: 'Fundadora, ArtStudio',
-      content: 'Profissionalismo e criatividade em cada projeto. Os resultados sempre impressionam nossos clientes.',
-      rating: 5,
-      image: defaultAvatar
+      content: 'Profissionalismo e criatividade em cada projeto. Recomendo fortemente!',
+      rating: 5
     }
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-background to-background/50">
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-background/50 to-background">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,53 +36,46 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            O que os{' '}
+            Depoimentos{' '}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Clientes Dizem
+              dos Clientes
             </span>
           </h2>
           <p className="text-text/70 max-w-2xl mx-auto">
-            Feedback de clientes que transformaram suas ideias em realidade através do design.
+            Veja o que meus clientes dizem sobre meu trabalho e como tenho ajudado
+            a transformar suas ideias em realidade.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 relative group hover:bg-white/10 transition-colors"
+              transition={{ delay: index * 0.2 }}
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 relative group"
             >
-              <Quote className="w-10 h-10 text-primary/20 absolute -top-2 -left-2" />
-              
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-r from-primary/20 to-accent/20">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{testimonial.name}</h3>
-                  <p className="text-text/70 text-sm">{testimonial.role}</p>
-                  <div className="flex gap-1 mt-1">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-primary text-primary"
-                      />
-                    ))}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-accent/50 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-xl" />
+              <div className="relative">
+                <Quote className="w-8 h-8 text-primary/50 mb-4" />
+                <p className="text-text/80 mb-6">{testimonial.content}</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
+                    <User className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">{testimonial.name}</h4>
+                    <p className="text-sm text-text/70">{testimonial.role}</p>
                   </div>
                 </div>
+                <div className="flex gap-1 mt-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
+                </div>
               </div>
-
-              <p className="text-text/80 italic">"{testimonial.content}"</p>
-              
-              <div className="absolute -inset-px bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
             </motion.div>
           ))}
         </div>
